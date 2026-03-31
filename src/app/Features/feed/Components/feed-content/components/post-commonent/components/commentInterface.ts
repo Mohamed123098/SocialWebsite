@@ -1,0 +1,19 @@
+
+interface CommentInterface {
+  _id: string;
+  content: string;
+  commentCreator: CommentCreator;
+  post: string;
+  parentComment: null;
+  image:string;
+  likes: any[];
+  createdAt: string;
+  repliesCount: number;
+}
+
+interface CommentCreator {
+  _id: string;
+  name: string;
+  username: string;
+  photo: string;
+}

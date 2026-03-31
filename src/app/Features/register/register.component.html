@@ -1,0 +1,197 @@
+<div class="container m-4 grid gap-4 bg-white p-4 border-gray-300 rounded-2xl w-1/2">
+    <div class="text-center">
+        <h2 class="block text-4xl">Create New Account</h2>
+        <p class="text-gray-400">It is quik and easy</p>
+    </div>
+    <form class="max-w-sm mx-auto" (ngSubmit)="submitForm()" [formGroup]="registerForm">
+        <div class="mb-5">
+            <label for="fullName"  class="block mb-2.5 text-sm font-medium text-heading">Your Name</label>
+            <input [class]="{
+                'border-green-600':registerForm.get('name')?.valid,
+                'border-red-600':registerForm.get('name')?.invalid&&registerForm.get('name')?.touched
+            }" 
+             type="text" id="fullName" formControlName="name"
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-300"
+                placeholder="Muhammad Ragab" required />
+        </div>
+       @if(registerForm.get('name')?.invalid&&registerForm.get('name')?.touched)
+       {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+            @if(registerForm.get('name')?.hasError('required')) {<li>Full Name is required.</li>}
+            @else if(registerForm.get('name')?.hasError('minlength')){<li>Name must be at least 3 characters</li>}
+			@else if(registerForm.get('name')?.hasError('pattern')){<li>Name must be contained characters only</li>}
+          </ul>
+        </div>
+      </div>
+    }
+        <div class="mb-5">
+            <label for="username" class="block mb-2.5 text-sm font-medium text-heading">User Name</label>
+            <input [class]="{
+                'border-green-600':registerForm.get('username')?.valid,
+                'border-red-600':registerForm.get('username')?.invalid&&registerForm.get('username')?.touched
+            }"
+            type="text" id="userName" formControlName="username"
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-300"
+                placeholder="Muhammad201"  />
+        </div>
+      <div>
+        <label for="gender" class="block mb-2.5 text-sm font-medium text-heading">Ur Gender</label>
+        <select id="gender" formControlName="gender"
+            [class]="{
+                'border-green-600':registerForm.get('gender')?.valid,
+                'border-red-600':registerForm.get('gender')?.invalid&&registerForm.get('gender')?.touched
+            }"
+            class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand shadow-xs placeholder:text-gray-300 mb-4">
+            <option selected value="" disabled>Choose a Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        </div>
+                @if(registerForm.get('gender')?.invalid&&registerForm.get('gender')?.touched)
+        {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+			@if(registerForm.get('gender')?.hasError('required')){ <li>Email is required.</li>}
+            <!-- @else if (registerForm.get('email')?.hasError('email')) { <li>Please enter a valid email address.</li>} -->
+          </ul>
+        </div>
+      </div>
+    }
+        <div class="mb-5">
+            <label for="email" class="block mb-2.5 text-sm font-medium text-heading">Your email</label>
+            <input 
+            [class]="{
+                'border-green-600':registerForm.get('email')?.valid,
+                'border-red-600':registerForm.get('email')?.invalid&&registerForm.get('email')?.touched
+            }"
+            type="email" id="email" formControlName="email"
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-300"
+                placeholder="name@flowbite.com" required />
+        </div>
+        @if(registerForm.get('email')?.invalid&&registerForm.get('email')?.touched)
+        {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+			@if(registerForm.get('email')?.hasError('required')){ <li>Email is required.</li>}
+            @else if (registerForm.get('email')?.hasError('email')) { <li>Please enter a valid email address.</li>}
+          </ul>
+        </div>
+      </div>
+    }
+        <div class="mb-5">
+            <label for="birthday" class="block mb-2.5 text-sm font-medium text-heading">Birthday</label>
+            <input 
+            [class]="{
+                'border-green-600':registerForm.get('birthday')?.valid,
+                'border-red-600':registerForm.get('birthday')?.invalid&&registerForm.get('birthday')?.touched
+            }"
+            type="date" id="birthday" formControlName="dateOfBirth"
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-300"
+                placeholder="10-1-2026" required />
+        </div>
+    @if(registerForm.get('birthday')?.invalid&&registerForm.get('birthday')?.touched)
+        {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+			@if(registerForm.get('birthday')?.hasError('required')){ <li>Birthday is required.</li>}
+          </ul>
+        </div>
+      </div>
+    }
+        <div class="mb-5">
+            <label for="password" class="block mb-2.5 text-sm font-medium text-heading">Your password</label>
+            <input
+            #pass
+            [class]="{
+                'border-green-600':registerForm.get('password')?.valid,
+                'border-red-600':registerForm.get('password')?.invalid&&registerForm.get('password')?.touched
+            }"
+            type="password" id="password" formControlName="password"
+                class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-300"
+                placeholder="••••••••" required 
+                />
+                 <span>
+                    <i class="fas fa-eye-slash" #icon (click)="showPassword(pass,icon)"></i></span>
+        </div>
+    @if(registerForm.get('password')?.invalid&&registerForm.get('password')?.touched)
+        {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+			@if(registerForm.get('password')?.hasError('required')){ <li>Password is required.</li>}
+            @else if (registerForm.get('password')?.hasError('pattern')) { <li>Must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special</li>}
+            @else if (registerForm.get('password')?.hasError('minlength')) {<li>Must contain at least 8 chars</li>}
+        </ul>
+        </div>
+      </div>
+    }
+    
+        <div class="mb-5">
+            <label for="repassword" class="block mb-2.5 text-sm font-medium text-heading">Confirm password</label>
+            <input #repass
+            [class]="{
+                'border-green-600':registerForm.get('rePassword')?.valid,
+                'border-red-600':registerForm.get('rePassword')?.invalid&&registerForm.get('rePassword')?.touched
+            }"
+            type="password" id="repassword" formControlName="rePassword"
+                class="bg-neutral-secondary-medium border  border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-300"
+                placeholder="••••••••" required />
+                <span><i #reicon class="fas fa-eye-slash inline" (click)="showPassword(repass,reicon)"></i></span>
+        </div>
+        @if(registerForm.get('rePassword')?.invalid&&registerForm.get('rePassword')?.touched)
+        {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+          <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+			@if(registerForm.get('rePassword')?.hasError('required')){ <li>Confirm Password is required.</li>}
+            @else if (registerForm.get('rePassword')?.hasError('mismatch')) { <li>Mis matching btwn password and confirm password</li>}
+            
+        </ul>
+        </div>
+      </div>
+    }
+        <label for="remember" class="flex items-center mb-5">
+            <input id="remember" type="checkbox" value=""
+                class="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft"
+                required />
+            <p class="ms-2 text-sm font-medium text-heading select-none">I agree with the <a href="#"
+                    class="text-fg-brand hover:underline">terms and conditions</a>.</p>
+        </label>
+        <button type="submit"
+        
+            class="text-white disabled:bg-gray-400 w-3/4 bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-4xl text-sm px-4 py-2.5 focus:outline-none">Create
+            New Account
+           @if(loading){<i class=" fas fa-spinner animate-spin"></i>}
+        </button>
+    @if(errorMessage)
+        {
+        <div
+        class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+        <span class="sr-only">Danger</span>
+        <div>
+			{{errorMessage}}
+        </div>
+      </div>
+    }
+     <button type="button" routerLink="/login"  class="text-white block mt-4 w-1/2  bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-3xl text-sm px-4 py-2.5 focus:outline-none">login</button>
+
+    </form>
+           
+</div>

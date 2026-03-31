@@ -1,0 +1,60 @@
+<div class="container bg-white w-1/2 p-4 rounded-2xl mt-20">
+    <div class="text-center">
+            <h2 class="block text-4xl">Login to posts</h2>
+            <p class="text-gray-400">Start ur social journey</p>
+        </div>
+        <form class="max-w-sm mx-auto" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+        <div class="mb-5">
+            <label for="email-alternative" class="block mb-2.5 text-sm font-medium text-heading">Your email</label>
+            <input 
+            [class]="
+            {
+                'border-green-600':loginForm.get('email')?.valid,
+                'border-red-600':loginForm.get('email')?.invalid&&loginForm.get('email')?.touched
+            }
+            "
+            formControlName="email" type="email" id="email-alternative" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="name@flowbite.com" required />
+        </div>
+        @if(loginForm.get('email')?.invalid&&loginForm.get('email')?.touched)
+        {
+        <div
+            class="flex p-4 mb-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+            <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                        @if(loginForm.get('email')?.hasError('required')){<li>Email is required.</li>}
+                        @else if (loginForm.get('email')?.hasError('email')) {<li>Please enter a valid email address.</li>}
+                        
+                    </ul>
+                </div>
+        </div>
+        }
+        <div class="mb-5">
+            <label for="password-alternative" class="block mb-2.5 text-sm font-medium text-heading">Your password</label>
+            <input
+            [class]="
+            {
+                'border-green-600':loginForm.get('password')?.valid,
+                'border-red-600':loginForm.get('password')?.invalid&&loginForm.get('password')?.touched
+            }
+            "
+            formControlName="password" type="password" id="password-alternative" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow placeholder:text-body" placeholder="••••••••" required />
+        </div>
+        <button type="submit" m-4   class="text-white block bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-3xl text-sm px-4 py-2.5 focus:outline-none">login</button>
+   @if(errorMessage)
+        {
+        <div
+            class="flex p-4 m-4 text-sm text-fg-danger-strong rounded-base bg-danger-soft border border-danger-subtle" role="alert">
+            <span class="sr-only">Danger</span>
+                <div>
+                    <ul class="mt-2 list-disc list-outside space-y-1 ps-2.5">
+                       <li>{{errorMessage}}</li>
+                    </ul>
+                </div>
+        </div>
+        }
+   
+        <button type="button" routerLink="/register"  class="text-white block mt-4 bg-brand box-border border border-transparent hover:bg-brand-strong focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-4xl text-sm px-4 py-2.5 focus:outline-none">Create New Account</button>
+   
+    </form>
+</div>
